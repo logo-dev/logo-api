@@ -1,7 +1,7 @@
 <p>
 	<h1><b>Logo.dev</b></h1>
 <p>
-    Highest quality logo api and company brand database.
+    Highest quality logo API and company brand database.
     <br />
     <br />
     <a href="https://www.logo.dev" alt="Logo API">Website</a>
