@@ -1,0 +1,10 @@
+<svg width="1280" height="320" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo.dev — Every company logo, one API request">
+  <rect width="1280" height="320" fill="#09090B"/>
+  <g transform="translate(80 96) scale(0.30)" fill="#FAFAFA">
+    <path d="M355.884 233.53L200.743 345.634L195.121 349.432C186.68 355.135 175.296 349.087 175.296 338.9V21.7329C175.296 11.3299 163.481 5.33288 155.084 11.4729L5.208 121.062C1.935 123.455 0 127.267 0 131.322V354.473C0 361.493 5.69 367.183 12.71 367.183H363.328C370.348 367.183 376.038 361.493 376.038 354.473V243.832C376.038 233.462 364.289 227.457 355.884 233.53Z"/>
+    <path d="M298.29 172.44C331.721 172.44 358.822 145.339 358.822 111.908C358.822 78.4771 331.721 51.376 298.29 51.376C264.859 51.376 237.758 78.4771 237.758 111.908C237.758 145.339 264.859 172.44 298.29 172.44Z"/>
+  </g>
+  <text x="210" y="170" font-family="'Geist', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="72" font-weight="600" letter-spacing="-2" fill="#FAFAFA">logo.dev</text>
+  <text x="82" y="232" font-family="'Geist', system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="34" font-weight="400" fill="#A1A1AA">Every company logo, one API request</text>
+  <text x="82" y="278" font-family="'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace" font-size="19" font-weight="400" letter-spacing="0.5" fill="#71717A">50M+ companies&#160;&#160;·&#160;&#160;30M+ requests/day&#160;&#160;·&#160;&#160;&lt;50ms median&#160;&#160;·&#160;&#160;500K free/mo</text>
+</svg>
