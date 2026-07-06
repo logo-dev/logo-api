@@ -1,7 +1,6 @@
 "use client";
 
-import { ChevronsUpDownIcon } from "lucide-react";
-import { useCallback, useState } from "react";
+import { type SVGProps, useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Command,
@@ -21,6 +20,27 @@ import {
   type BrandSearchResult,
   withLogoParams,
 } from "@/registry/new-york/lib/logo-dev";
+
+// Inlined so the component needs no icon library. Consumers on any icon
+// setup (lucide, radix, none) install this without extra dependencies.
+const ChevronsUpDownIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    aria-hidden="true"
+    fill="none"
+    height="24"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="2"
+    viewBox="0 0 24 24"
+    width="24"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <path d="m7 15 5 5 5-5" />
+    <path d="m7 9 5-5 5 5" />
+  </svg>
+);
 
 interface BrandSearchProps {
   className?: string;
