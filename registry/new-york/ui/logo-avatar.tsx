@@ -6,7 +6,9 @@ import { cn } from "@/lib/utils";
 import { Logo, type LogoSourceProps } from "@/registry/new-york/ui/logo";
 
 type LogoAvatarProps = LogoSourceProps &
-  Omit<ComponentProps<typeof Avatar>, "children"> & {
+  // `size` is omitted because some shadcn Avatar variants define their own
+  // (string) size prop; ours is the pixel dimension below.
+  Omit<ComponentProps<typeof Avatar>, "children" | "size"> & {
     /** Avatar dimension in pixels. Default 32. */
     size?: number;
     /** Display name used for alt text and initials (e.g. "Apple" for ticker AAPL). */
