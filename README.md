@@ -81,11 +81,14 @@ Lead with HTML, then reach for your stack. Every snippet uses the same CDN URL â
 ```
 
 ```jsx
-// React
+// React â€” works with any bundler; in Next.js, read the token from
+// process.env.NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY instead
+const LOGO_DEV_TOKEN = "LOGO_DEV_PUBLISHABLE_KEY";
+
 function CompanyLogo({ domain }) {
   return (
     <img
-      src={`https://img.logo.dev/${domain}?token=${process.env.NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY}`}
+      src={`https://img.logo.dev/${domain}?token=${LOGO_DEV_TOKEN}`}
       alt={`${domain} logo`}
     />
   );
