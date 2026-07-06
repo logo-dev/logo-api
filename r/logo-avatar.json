@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-avatar",
+  "title": "Logo Avatar",
+  "author": "Logo.dev <team@logo.dev>",
+  "description": "A company logo in a shadcn Avatar shell with an initials fallback — for CRM account lists, transaction feeds, and directory rows.",
+  "registryDependencies": [
+    "avatar",
+    "https://www.logo.dev/r/logo.json"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/logo-avatar.tsx",
+      "content": "\"use client\";\n\nimport type { ComponentProps } from \"react\";\nimport { Avatar } from \"@/components/ui/avatar\";\nimport { cn } from \"@/lib/utils\";\nimport { Logo, type LogoSourceProps } from \"@/registry/new-york/ui/logo\";\n\ntype LogoAvatarProps = LogoSourceProps &\n  Omit<ComponentProps<typeof Avatar>, \"children\"> & {\n    /** Avatar dimension in pixels. Default 32. */\n    size?: number;\n    /** Display name used for alt text and initials (e.g. \"Apple\" for ticker AAPL). */\n    label?: string;\n    theme?: \"light\" | \"dark\" | \"auto\";\n    greyscale?: boolean;\n    /** Publishable (pk_) key. Defaults to NEXT_PUBLIC_LOGO_DEV_TOKEN. */\n    token?: string;\n  };\n\n/**\n * A company logo in a shadcn Avatar shell with an initials fallback — for\n * CRM rows, transaction feeds, and anywhere you'd show a user avatar.\n *\n * Defaults to rounded-md: full circles crop most logos. Pass\n * className=\"rounded-full\" if you want circular avatars anyway.\n */\nfunction LogoAvatar({\n  domain,\n  name,\n  ticker,\n  crypto,\n  isin,\n  size = 32,\n  label,\n  theme,\n  greyscale,\n  token,\n  className,\n  style,\n  ...avatarProps\n}: LogoAvatarProps) {\n  const sourceProps = {\n    crypto,\n    domain,\n    isin,\n    name,\n    ticker,\n  } as LogoSourceProps;\n\n  return (\n    <Avatar\n      className={cn(\"rounded-md\", className)}\n      style={{ height: size, width: size, ...style }}\n      {...avatarProps}\n    >\n      <Logo\n        {...sourceProps}\n        className=\"size-full rounded-[inherit] object-contain\"\n        fallback=\"initials\"\n        greyscale={greyscale}\n        label={label}\n        size={size}\n        theme={theme}\n        token={token}\n      />\n    </Avatar>\n  );\n}\n\nexport type { LogoAvatarProps };\nexport { LogoAvatar };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "envVars": {
+    "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+  },
+  "categories": [
+    "logos",
+    "branding"
+  ],
+  "type": "registry:ui"
+}

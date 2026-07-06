@@ -1,0 +1,131 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "logodev",
+  "homepage": "https://www.logo.dev",
+  "items": [
+    {
+      "name": "logo-lib",
+      "type": "registry:lib",
+      "title": "Logo.dev URL Builder",
+      "description": "Typed URL builder, retina srcset helper, and token resolution for the Logo.dev Logo Image API. Supports domain, name, ticker, crypto, and ISIN lookups.",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "branding"],
+      "files": [
+        {
+          "path": "registry/new-york/lib/logo-dev.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "envVars": {
+        "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+      },
+      "docs": "Get a free publishable (pk_) key at https://www.logo.dev/dashboard and set NEXT_PUBLIC_LOGO_DEV_TOKEN in .env.local."
+    },
+    {
+      "name": "logo",
+      "type": "registry:ui",
+      "title": "Logo",
+      "description": "A company logo that never breaks: look up by domain, name, ticker, crypto, or ISIN with a retina srcSet, automatic dark-mode variants, and layered fallbacks (API monogram, local initials, or a custom node).",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "branding"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/logo.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["https://www.logo.dev/r/logo-lib.json"],
+      "envVars": {
+        "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+      },
+      "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://docs.logo.dev/platform/attribution"
+    },
+    {
+      "name": "logo-avatar",
+      "type": "registry:ui",
+      "title": "Logo Avatar",
+      "description": "A company logo in a shadcn Avatar shell with an initials fallback — for CRM account lists, transaction feeds, and directory rows.",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "branding"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/logo-avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["avatar", "https://www.logo.dev/r/logo.json"],
+      "envVars": {
+        "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+      }
+    },
+    {
+      "name": "attribution",
+      "type": "registry:ui",
+      "title": "Logo.dev Attribution",
+      "description": "The attribution link Logo.dev free plans require in production. Keeps the referrer intact so attribution can be verified.",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "branding"],
+      "files": [
+        {
+          "path": "registry/new-york/ui/attribution.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": ["utils"]
+    },
+    {
+      "name": "logo-wall",
+      "type": "registry:component",
+      "title": "Logo Wall",
+      "description": "A customer or integration logo grid built from a list of domains, with grayscale-to-color hover and built-in attribution. Server-component safe.",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "branding", "marketing"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/logo-wall/logo-wall.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "registryDependencies": [
+        "https://www.logo.dev/r/logo.json",
+        "https://www.logo.dev/r/attribution.json"
+      ],
+      "envVars": {
+        "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+      }
+    },
+    {
+      "name": "brand-search",
+      "type": "registry:block",
+      "title": "Brand Search",
+      "description": "Company autocomplete backed by the Logo.dev Search API: a debounced combobox with logos per result, plus a Next.js route that keeps your secret key on the server.",
+      "author": "Logo.dev <team@logo.dev>",
+      "categories": ["logos", "search", "forms"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/brand-search/brand-search.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/hooks/use-brand-search.ts",
+          "type": "registry:hook"
+        },
+        {
+          "path": "registry/new-york/blocks/brand-search/route.ts",
+          "type": "registry:file",
+          "target": "app/api/logo-dev/search/route.ts"
+        }
+      ],
+      "registryDependencies": [
+        "button",
+        "command",
+        "popover",
+        "https://www.logo.dev/r/logo-lib.json"
+      ],
+      "envVars": {
+        "LOGO_DEV_SECRET_KEY": ""
+      },
+      "docs": "Set LOGO_DEV_SECRET_KEY (sk_) in .env.local — server-only, never expose it to the browser. Get keys at https://www.logo.dev/dashboard. Not on Next.js? Re-create the proxy from app/api/logo-dev/search/route.ts in your backend and pass `endpoint` to useBrandSearch."
+    }
+  ]
+}

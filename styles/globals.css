@@ -1,0 +1,6 @@
+/*
+ * Stub stylesheet. This repo distributes registry source files; it does not
+ * ship or build CSS. The path exists so the shadcn CLI has a valid
+ * `tailwind.css` entry in components.json.
+ */
+@import "tailwindcss";
