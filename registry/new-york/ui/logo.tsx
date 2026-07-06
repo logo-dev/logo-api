@@ -86,6 +86,8 @@ const MIN_TILE_FONT_PX = 10;
 const TILE_FONT_RATIO = 0.4;
 
 interface InitialsTileProps {
+  /** Accessible name. An empty string marks the tile decorative. */
+  alt: string;
   className?: string;
   height: number | string;
   label: string;
@@ -94,6 +96,7 @@ interface InitialsTileProps {
 }
 
 const InitialsTile = ({
+  alt,
   label,
   width,
   height,
@@ -104,13 +107,17 @@ const InitialsTile = ({
   const fontSize = numericHeight
     ? Math.max(MIN_TILE_FONT_PX, Math.round(numericHeight * TILE_FONT_RATIO))
     : undefined;
+  const decorative = alt === "";
   return (
     <span
-      aria-label={`${label} logo`}
+      aria-hidden={decorative ? true : undefined}
+      aria-label={decorative ? undefined : alt}
       className={cn(
         "inline-flex select-none items-center justify-center rounded-md bg-muted font-medium text-muted-foreground",
         className
       )}
+      // Decorative tiles keep role="img" but are removed from the a11y tree by
+      // aria-hidden, so screen readers skip them entirely.
       role="img"
       style={{ fontSize, height, width, ...style }}
     >
@@ -175,16 +182,7 @@ function Logo(props: LogoProps) {
   const source = toLogoSource({ crypto, domain, isin, name, ticker });
   const { kind, value } = logoSourceValue(source);
   const labelText = label ?? name ?? value;
-
-  // The error flag must reset when the logo identity changes, otherwise a
-  // fallback for one company would stick around after switching to another.
-  const identityKey = `${kind}:${value}:${token ?? ""}`;
-  const [errored, setErrored] = useState(false);
-  const [prevKey, setPrevKey] = useState(identityKey);
-  if (prevKey !== identityKey) {
-    setPrevKey(identityKey);
-    setErrored(false);
-  }
+  const resolvedAlt = alt ?? `${labelText} logo`;
 
   // The API returns HTTP 200 with a generated monogram on a miss, so onError
   // only ever fires for a missing logo when the URL requests fallback=404.
@@ -193,6 +191,26 @@ function Logo(props: LogoProps) {
     ? "404"
     : undefined;
 
+  // Reset the error flag whenever anything that changes the requested image
+  // changes (identifier, token, or any URL option), so the new image is
+  // retried instead of staying stuck on a stale fallback.
+  const identityKey = [
+    kind,
+    value,
+    token ?? "",
+    urlFallback ?? "",
+    format ?? "",
+    theme,
+    greyscale ? "g" : "",
+    size,
+  ].join(":");
+  const [errored, setErrored] = useState(false);
+  const [prevKey, setPrevKey] = useState(identityKey);
+  if (prevKey !== identityKey) {
+    setPrevKey(identityKey);
+    setErrored(false);
+  }
+
   const resolvedWidth = width ?? size;
   const resolvedHeight = height ?? size;
 
@@ -200,6 +218,7 @@ function Logo(props: LogoProps) {
     if (fallback === "monogram" || fallback === "initials") {
       return (
         <InitialsTile
+          alt={resolvedAlt}
           className={className}
           height={resolvedHeight}
           label={labelText}
@@ -242,7 +261,6 @@ function Logo(props: LogoProps) {
     style,
     ...imgProps,
   };
-  const resolvedAlt = alt ?? `${labelText} logo`;
 
   if (theme !== "auto") {
     const { src, srcSet } = srcFor(theme);

@@ -56,13 +56,17 @@ export interface BrandSearchResult {
 
 let warnedMissingToken = false;
 
-const envToken = (): string | undefined => {
-  if (typeof process === "undefined") {
-    // Non-Node bundlers (e.g. Vite) don't define `process`; pass `token` instead.
-    return;
-  }
-  return process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
-};
+// Declared minimally so this file typechecks in browser-only projects that
+// don't include @types/node (Vite, Deno). It stays compatible with @types/node
+// when present, and the literal `process.env.NEXT_PUBLIC_*` access below stays
+// inlinable by Next.js at build time.
+declare const process: { env: Record<string, string | undefined> } | undefined;
+
+const envToken = (): string | undefined =>
+  typeof process === "undefined"
+    ? // Non-Node bundlers don't define `process`; pass `token` instead.
+      undefined
+    : process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN;
 
 /**
  * Resolve the publishable API token: explicit argument first, then the
@@ -209,10 +213,10 @@ const WORD_SEPARATORS = /[\s\-_]+/;
  */
 export const logoInitials = (label: string): string => {
   const words = label.trim().split(WORD_SEPARATORS).filter(Boolean);
-  const first = words.at(0)?.at(0);
+  const first = words[0]?.[0];
   if (!first) {
     return "?";
   }
-  const second = words.length > 1 ? words.at(1)?.at(0) : undefined;
+  const second = words.length > 1 ? words[1]?.[0] : undefined;
   return `${first}${second ?? ""}`.toUpperCase();
 };

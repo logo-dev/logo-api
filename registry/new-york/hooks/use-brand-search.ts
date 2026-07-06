@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { BrandSearchResult } from "@/registry/new-york/lib/logo-dev";
 
 interface UseBrandSearchOptions {
@@ -25,9 +25,13 @@ const performSearch = async (
   limit: number,
   signal: AbortSignal
 ): Promise<BrandSearchResult[]> => {
-  const response = await fetch(`${endpoint}?q=${encodeURIComponent(query)}`, {
-    signal,
-  });
+  // Append `q` with the right separator so a custom endpoint that already has
+  // query params (e.g. "/api/search?tenant=acme") stays valid.
+  const separator = endpoint.includes("?") ? "&" : "?";
+  const response = await fetch(
+    `${endpoint}${separator}q=${encodeURIComponent(query)}`,
+    { signal }
+  );
   if (!response.ok) {
     throw new Error(`Brand search failed (${response.status})`);
   }
@@ -53,28 +57,28 @@ function useBrandSearch({
   const [results, setResults] = useState<BrandSearchResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<Error | null>(null);
-  const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
     const trimmed = query.trim();
     if (!(enabled && trimmed)) {
-      abortRef.current?.abort();
       setResults([]);
       setIsLoading(false);
       setError(null);
       return;
     }
 
+    // One controller per query. Cleanup aborts it, so an in-flight request for
+    // a previous query can never overwrite results for the current one, even if
+    // it resolves during the next debounce window.
+    const controller = new AbortController();
     const timer = setTimeout(() => {
-      abortRef.current?.abort();
-      const controller = new AbortController();
-      abortRef.current = controller;
       setIsLoading(true);
-
       performSearch(endpoint, trimmed, limit, controller.signal)
         .then((data) => {
-          setResults(data);
-          setError(null);
+          if (!controller.signal.aborted) {
+            setResults(data);
+            setError(null);
+          }
         })
         .catch((caught: unknown) => {
           if (!isAbortError(caught)) {
@@ -86,17 +90,17 @@ function useBrandSearch({
           }
         })
         .finally(() => {
-          // A newer request may already own the loading state.
-          if (abortRef.current === controller) {
+          if (!controller.signal.aborted) {
             setIsLoading(false);
           }
         });
     }, debounceMs);
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      controller.abort();
+    };
   }, [query, enabled, endpoint, debounceMs, limit]);
-
-  useEffect(() => () => abortRef.current?.abort(), []);
 
   return { error, isLoading, query, results, setQuery };
 }
