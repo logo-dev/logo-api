@@ -1,4 +1,5 @@
-<svg width="1280" height="320" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logo.dev — Every company logo, one API request">
+<svg width="1280" height="320" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hero-title">
+  <title id="hero-title">Logo.dev — Every company logo, one API request</title>
   <rect width="1280" height="320" fill="#09090B"/>
   <g transform="translate(80 96) scale(0.30)" fill="#FAFAFA">
     <path d="M355.884 233.53L200.743 345.634L195.121 349.432C186.68 355.135 175.296 349.087 175.296 338.9V21.7329C175.296 11.3299 163.481 5.33288 155.084 11.4729L5.208 121.062C1.935 123.455 0 127.267 0 131.322V354.473C0 361.493 5.69 367.183 12.71 367.183H363.328C370.348 367.183 376.038 361.493 376.038 354.473V243.832C376.038 233.462 364.289 227.457 355.884 233.53Z"/>

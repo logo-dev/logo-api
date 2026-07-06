@@ -30,13 +30,16 @@ There's no SDK to install and no logo files to host. Get your free [publishable 
 
 That's the whole integration. Swap `stripe.com` for any domain and you get a crisp, correctly-sized logo back in milliseconds.
 
-> **Live demo:** the row below renders straight from `img.logo.dev`. Replace `LOGO_DEV_PUBLISHABLE_KEY` with a public demo key to see it light up.
+<!-- LIVE DEMO — uncomment after swapping LOGO_DEV_PUBLISHABLE_KEY for the team's public demo publishable key,
+     so the row renders real logos straight from img.logo.dev on the repo page:
+
+> **Live demo:** the row below renders straight from `img.logo.dev`:
 >
-> <!-- Swap LOGO_DEV_PUBLISHABLE_KEY for the team's public demo publishable key so these logos render on the repo page. -->
 > <img src="https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Stripe" height="40" />
 > <img src="https://img.logo.dev/shopify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Shopify" height="40" />
 > <img src="https://img.logo.dev/airbnb.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Airbnb" height="40" />
 > <img src="https://img.logo.dev/spotify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Spotify" height="40" />
+-->
 
 ---
 
@@ -143,15 +146,18 @@ Most migrations take a few minutes. Full guide: **[Migrating from Clearbit →](
 
 ## Trusted by developers
 
-`55K+` developers build on logo.dev. The logos below are rendered live through the API itself — the same one tag you'd use:
+`55K+` developers build on logo.dev — from CRMs and fintech dashboards to AI products.
 
-<!-- Swap LOGO_DEV_PUBLISHABLE_KEY for the team's public demo publishable key so this strip renders. Companies shown are from logo.dev's public reference set. -->
+<!-- CUSTOMER STRIP — uncomment after swapping LOGO_DEV_PUBLISHABLE_KEY for the public demo key.
+     Renders customer logos live through the API itself (companies from logo.dev's public reference set):
+
 <p>
   <img src="https://img.logo.dev/linear.app?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Linear" height="32" />&nbsp;&nbsp;
   <img src="https://img.logo.dev/close.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Close" height="32" />&nbsp;&nbsp;
   <img src="https://img.logo.dev/perplexity.ai?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Perplexity" height="32" />&nbsp;&nbsp;
   <img src="https://img.logo.dev/mutinyhq.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Mutiny" height="32" />
 </p>
+-->
 
 ---
 
@@ -171,7 +177,10 @@ On the **free plan, commercial use requires a visible link back**; personal proj
 
 Prefer a badge? Drop in [`assets/powered-by-logo-dev.svg`](assets/powered-by-logo-dev.svg):
 
+[<img src="assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" />](https://logo.dev)
+
 ```html
+<!-- Hotlink from your own site or README (URL resolves once this repo's default branch carries the asset): -->
 <a href="https://logo.dev"><img src="https://raw.githubusercontent.com/logo-dev/logo-api/main/assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" /></a>
 ```
 

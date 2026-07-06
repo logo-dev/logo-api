@@ -1,4 +1,5 @@
-<svg width="186" height="28" viewBox="0 0 186 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Powered by Logo.dev">
+<svg width="186" height="28" viewBox="0 0 186 28" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="badge-title">
+  <title id="badge-title">Powered by Logo.dev</title>
   <rect x="0.5" y="0.5" width="185" height="27" rx="6" fill="#FFFFFF" stroke="#E4E4E7"/>
   <g transform="translate(11 8) scale(0.0318)" fill="#18181B">
     <path d="M355.884 233.53L200.743 345.634L195.121 349.432C186.68 355.135 175.296 349.087 175.296 338.9V21.7329C175.296 11.3299 163.481 5.33288 155.084 11.4729L5.208 121.062C1.935 123.455 0 127.267 0 131.322V354.473C0 361.493 5.69 367.183 12.71 367.183H363.328C370.348 367.183 376.038 361.493 376.038 354.473V243.832C376.038 233.462 364.289 227.457 355.884 233.53Z"/>
