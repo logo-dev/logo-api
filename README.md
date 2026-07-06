@@ -1,11 +1,8 @@
 <div align="center">
 
-<a href="https://www.logo.dev">
-  <img src="assets/hero-banner.svg" alt="Logo.dev — Every company logo, one API request" width="100%" />
-</a>
+# Logo.dev
 
-<br />
-<br />
+### Every company logo, one API request
 
 **The highest-quality logo and brand API.** Pass a domain, ticker, or crypto symbol — get back a clean, correctly-sized logo, served from a global CDN. No sourcing, no hosting, no broken images.
 
