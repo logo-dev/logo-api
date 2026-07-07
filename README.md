@@ -125,6 +125,51 @@ Full, copy-paste-ready snippets for every stack live in the docs: **[docs.logo.d
 
 ---
 
+## React components (shadcn/ui)
+
+For React apps, this repo is also the official Logo.dev [shadcn/ui](https://ui.shadcn.com) registry. It ships production-grade components for the logo patterns most apps end up rebuilding by hand: image fallbacks, dark mode, retina, and debounced company search.
+
+Install a component with the shadcn CLI:
+
+```bash
+npx shadcn@latest add https://www.logo.dev/r/logo.json
+```
+
+You can also install straight from this repo, pinned to a branch, tag, or commit:
+
+```bash
+npx shadcn@latest add logo-dev/logo-api/logo
+```
+
+| Component | What you get |
+| --- | --- |
+| `logo` | A logo that never breaks: domain/name/ticker/crypto/ISIN lookup, retina srcSet, automatic dark-mode variants, monogram/initials/custom fallbacks |
+| `logo-avatar` | A logo in a shadcn Avatar shell with initials fallback — CRM rows, transaction feeds |
+| `brand-search` | Company autocomplete combobox backed by the Search API, with a Next.js route that keeps your secret key server-side |
+| `logo-wall` | Customer/integration logo grid from a list of domains, grayscale-to-color hover |
+| `attribution` | The attribution link free plans require in production |
+| `logo-lib` | The typed URL builder underneath all of the above, useful on its own |
+
+Components read your publishable key from `NEXT_PUBLIC_LOGO_DEV_TOKEN`; `brand-search` also needs `LOGO_DEV_SECRET_KEY` on the server. Both are added to `.env.local` on install. Full guide: **[shadcn/ui components →](https://docs.logo.dev/integrations/shadcn)**
+
+<details>
+<summary><strong>Developing the registry</strong></summary>
+
+<br />
+
+```bash
+pnpm install
+pnpm test        # URL builder unit tests
+pnpm typecheck
+pnpm build       # shadcn build → r/*.json (committed; CI checks it's in sync)
+```
+
+Component sources live in `registry/new-york/`. `components/ui/` holds vendored shadcn primitives used only for typechecking — consumers get those from ui.shadcn.com.
+
+</details>
+
+---
+
 ## Migrating from Clearbit
 
 **Clearbit's Logo API shut down on December 8, 2025.** If your app still points at `logo.clearbit.com`, the logos are broken.

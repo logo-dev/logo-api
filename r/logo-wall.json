@@ -1,0 +1,27 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "logo-wall",
+  "title": "Logo Wall",
+  "author": "Logo.dev <team@logo.dev>",
+  "description": "A customer or integration logo grid built from a list of domains, with grayscale-to-color hover and built-in attribution. Server-component safe.",
+  "registryDependencies": [
+    "https://www.logo.dev/r/logo.json",
+    "https://www.logo.dev/r/attribution.json"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/blocks/logo-wall/logo-wall.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/lib/utils\";\nimport { Attribution } from \"@/registry/new-york/ui/attribution\";\nimport { Logo } from \"@/registry/new-york/ui/logo\";\n\ntype LogoWallBrand = string | { domain: string; name?: string; href?: string };\n\ninterface LogoWallProps extends ComponentProps<\"div\"> {\n  /**\n   * Renders the Logo.dev attribution link below the grid. Required on free\n   * plans in production (https://docs.logo.dev/platform/attribution) — only\n   * disable this on a paid plan.\n   */\n  attribution?: boolean;\n  /** Domains to display, optionally with a display name and link. */\n  brands: LogoWallBrand[];\n  /** Grid columns from the `sm` breakpoint up (2 below it). Default 4. */\n  columns?: 2 | 3 | 4 | 5 | 6;\n  /** Muted grayscale logos that regain color on hover. Default true. */\n  grayscale?: boolean;\n  /** Logo height in pixels. Default 32. */\n  size?: number;\n  theme?: \"light\" | \"dark\" | \"auto\";\n  /** Publishable (pk_) key. Defaults to NEXT_PUBLIC_LOGO_DEV_TOKEN. */\n  token?: string;\n}\n\nconst COLUMN_CLASSES: Record<NonNullable<LogoWallProps[\"columns\"]>, string> = {\n  2: \"sm:grid-cols-2\",\n  3: \"sm:grid-cols-3\",\n  4: \"sm:grid-cols-4\",\n  5: \"sm:grid-cols-5\",\n  6: \"sm:grid-cols-6\",\n};\n\nconst normalizeBrand = (brand: LogoWallBrand) =>\n  typeof brand === \"string\" ? { domain: brand } : brand;\n\n/**\n * A customer or integration logo grid from a list of domains. Server-safe:\n * hover color is pure CSS, so it renders fine in React Server Components.\n */\nfunction LogoWall({\n  brands,\n  size = 32,\n  columns = 4,\n  grayscale = true,\n  theme,\n  attribution = true,\n  token,\n  className,\n  ...props\n}: LogoWallProps) {\n  return (\n    <div className={cn(\"w-full\", className)} {...props}>\n      <ul\n        className={cn(\n          \"grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-6\",\n          COLUMN_CLASSES[columns]\n        )}\n      >\n        {brands.map(normalizeBrand).map(({ domain, name, href }) => {\n          const logo = (\n            <Logo\n              className={cn(\n                grayscale &&\n                  \"opacity-60 grayscale transition hover:opacity-100 hover:grayscale-0 motion-reduce:transition-none\"\n              )}\n              domain={domain}\n              label={name}\n              size={size}\n              theme={theme}\n              token={token}\n            />\n          );\n          return (\n            <li key={domain}>\n              {href ? (\n                <a href={href} rel=\"noopener noreferrer\" target=\"_blank\">\n                  {logo}\n                </a>\n              ) : (\n                logo\n              )}\n            </li>\n          );\n        })}\n      </ul>\n      {attribution ? (\n        <div className=\"mt-6 text-center\">\n          <Attribution />\n        </div>\n      ) : null}\n    </div>\n  );\n}\n\nexport type { LogoWallBrand, LogoWallProps };\nexport { LogoWall };\n",
+      "type": "registry:component"
+    }
+  ],
+  "envVars": {
+    "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
+  },
+  "categories": [
+    "logos",
+    "branding",
+    "marketing"
+  ],
+  "type": "registry:component"
+}

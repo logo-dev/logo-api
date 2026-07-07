@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "attribution",
+  "title": "Logo.dev Attribution",
+  "author": "Logo.dev <team@logo.dev>",
+  "description": "The attribution link Logo.dev free plans require in production. Keeps the referrer intact so attribution can be verified.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/new-york/ui/attribution.tsx",
+      "content": "import type { ComponentProps } from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ninterface AttributionProps\n  extends Omit<ComponentProps<\"a\">, \"href\" | \"children\"> {\n  label?: string;\n}\n\n/**\n * Attribution link required on Logo.dev free plans in production.\n * See https://docs.logo.dev/platform/attribution\n *\n * Uses rel=\"noopener\" without \"noreferrer\" on purpose: the referrer is how\n * attribution is verified.\n */\nfunction Attribution({\n  label = \"Logos provided by Logo.dev\",\n  className,\n  ...props\n}: AttributionProps) {\n  return (\n    <a\n      className={cn(\n        \"text-muted-foreground text-xs underline-offset-4 hover:text-foreground hover:underline\",\n        className\n      )}\n      href=\"https://logo.dev\"\n      rel=\"noopener\"\n      target=\"_blank\"\n      {...props}\n    >\n      {label}\n    </a>\n  );\n}\n\nexport type { AttributionProps };\nexport { Attribution };\n",
+      "type": "registry:ui"
+    }
+  ],
+  "categories": [
+    "logos",
+    "branding"
+  ],
+  "type": "registry:ui"
+}
