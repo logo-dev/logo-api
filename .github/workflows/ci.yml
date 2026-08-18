@@ -4,6 +4,10 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+# The registry job only reads the repo, so the GITHUB_TOKEN needs nothing more.
+# Set at the top level so any job added later inherits least privilege.
+permissions:
+  contents: read
 jobs:
   registry:
     runs-on: ubuntu-latest
