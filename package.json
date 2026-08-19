@@ -29,16 +29,5 @@
     "typescript": "^6.0.3",
     "ultracite": "^7.9.0",
     "vitest": "^4.1.9"
-  },
-  "pnpm": {
-    "overrides": {
-      "undici": ">=7.29.0 <8",
-      "ip-address": ">=10.3.1",
-      "fast-uri": ">=3.1.5 <4",
-      "postcss": ">=8.5.23",
-      "js-yaml": ">=4.3.1 <5",
-      "hono": ">=4.12.34",
-      "@hono/node-server": ">=1.19.15 <2"
-    }
   }
 }

@@ -1,0 +1,8 @@
+overrides:
+  undici: '>=7.29.0 <8'
+  ip-address: '>=10.3.1'
+  fast-uri: '>=3.1.5 <4'
+  postcss: '>=8.5.23'
+  js-yaml: '>=4.3.1 <5'
+  hono: '>=4.12.34 <4.13'
+  '@hono/node-server': '>=1.19.15 <2'
