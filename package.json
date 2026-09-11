@@ -28,6 +28,6 @@
     "tailwind-merge": "^3.6.0",
     "typescript": "^6.0.3",
     "ultracite": "^7.9.0",
-    "vitest": "^4.1.9"
+    "vitest": "^4.1.11"
   }
 }
