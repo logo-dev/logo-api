@@ -11,6 +11,11 @@ const OWN_ITEMS = new Set(registry.items.map((item) => item.name));
 // Vercel bot checkpoint, which answers the shadcn CLI with HTTP 429.
 const GITHUB_ITEM = /^logo-dev\/logo-api\/([a-z-]+)$/;
 const SHADCN_ITEM = /^[a-z-]+$/;
+// A Radix-only CSS variable, e.g. --radix-popover-trigger-width, in any
+// Tailwind form. Base UI projects (the shadcn default since 2026-07) never
+// set these, so one is allowed only as the first argument of a var() with a
+// fallback: var(--radix-…,var(--anchor-…)).
+const RADIX_VAR = /--radix-[a-z-]+(?![a-z-]|,)/;
 
 const builtItems = () =>
   readdirSync(join(ROOT, "r"))
@@ -63,6 +68,26 @@ describe("built r/ output", () => {
     }
     for (const dep of item.registryDependencies ?? []) {
       expect(dep).not.toContain("www.logo.dev");
+    }
+  });
+});
+
+describe("primitive library support", () => {
+  it.each([
+    ["w-(--radix-popover-trigger-width)", true],
+    ["w-[var(--radix-popover-trigger-width)]", true],
+    ["origin-[--radix-popover-content-transform-origin]", true],
+    ["w-[var(--radix-popover-trigger-width,var(--anchor-width))]", false],
+    ["w-(--anchor-width)", false],
+  ])("flags %s: %s", (className, flagged) => {
+    expect(RADIX_VAR.test(className)).toBe(flagged);
+  });
+
+  it.each(
+    builtItems()
+  )("$name never relies on a Radix-only CSS variable", (item) => {
+    for (const file of item.files) {
+      expect(file.content).not.toMatch(RADIX_VAR);
     }
   });
 });
