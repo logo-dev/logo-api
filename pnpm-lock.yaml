@@ -12,9 +12,9 @@ overrides:
   js-yaml: '>=4.3.1 <5'
   hono: '>=4.13.7 <4.14'
   '@hono/node-server': '>=1.19.15 <2'
-  browserslist: '>=4.28.7'
-  brace-expansion: '>=5.0.12'
-  qs: '>=6.16.0'
+  browserslist: '>=4.28.7 <5'
+  brace-expansion: '>=5.0.12 <6'
+  qs: '>=6.16.0 <7'
 
 importers:
 
@@ -2292,7 +2292,7 @@ packages:
     resolution: {integrity: sha512-pJ2sYawQS0R/WI928Gj5GlPhTGzbMelq0+4INtSYNDV9ErKJcX6xjGWkoG/VnB3dpUm00zALaqkrUD77pO5TDQ==}
     hasBin: true
     peerDependencies:
-      browserslist: '>=4.28.7'
+      browserslist: '>=4.28.7 <5'
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
