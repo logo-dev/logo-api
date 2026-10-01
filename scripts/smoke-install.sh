@@ -50,6 +50,10 @@ if [[ "$MODE" == "local" ]]; then
     curl -sf "http://127.0.0.1:$PORT/registry.json" >/dev/null && break
     sleep 0.1
   done
+  if ! curl -sf "http://127.0.0.1:$PORT/registry.json" >/dev/null; then
+    echo "Local registry server did not start on port $PORT" >&2
+    exit 1
+  fi
 fi
 
 APP="$WORK/app"
