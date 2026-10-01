@@ -4,6 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "shadcn build --output r",
+    "smoke": "scripts/smoke-install.sh local",
+    "validate": "shadcn registry validate",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "lint": "biome check .",

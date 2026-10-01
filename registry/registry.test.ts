@@ -10,6 +10,7 @@ const OWN_ITEMS = new Set(registry.items.map((item) => item.name));
 // built-in shadcn item of that name, and a www.logo.dev URL sits behind the
 // Vercel bot checkpoint, which answers the shadcn CLI with HTTP 429.
 const GITHUB_ITEM = /^logo-dev\/logo-api\/([a-z-]+)$/;
+const SHADCN_ITEM = /^[a-z-]+$/;
 
 const builtItems = () =>
   readdirSync(join(ROOT, "r"))
@@ -25,14 +26,16 @@ const builtItems = () =>
     );
 
 describe("registry.json", () => {
-  it.each(registry.items)("$name names its own items in the GitHub form", (item) => {
+  it.each(
+    registry.items
+  )("$name names its own items in the GitHub form", (item) => {
     for (const dep of item.registryDependencies ?? []) {
       const own = GITHUB_ITEM.exec(dep);
       if (own) {
         expect(OWN_ITEMS).toContain(own[1]);
       } else {
         // Anything else must be a built-in shadcn item, never a URL.
-        expect(dep).toMatch(/^[a-z-]+$/);
+        expect(dep).toMatch(SHADCN_ITEM);
         expect(OWN_ITEMS).not.toContain(dep);
       }
     }
@@ -45,9 +48,11 @@ describe("registry.json", () => {
 
 describe("built r/ output", () => {
   it("has one file per item", () => {
-    expect(builtItems().map((item) => item.name).sort()).toEqual(
-      [...OWN_ITEMS].sort()
-    );
+    expect(
+      builtItems()
+        .map((item) => item.name)
+        .sort()
+    ).toEqual([...OWN_ITEMS].sort());
   });
 
   it.each(builtItems())("$name links only to live docs", (item) => {
