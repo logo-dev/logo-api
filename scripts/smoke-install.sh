@@ -5,6 +5,8 @@
 #
 #   scripts/smoke-install.sh local          # built r/ served on localhost (PRs)
 #   scripts/smoke-install.sh github <ref>   # logo-dev/logo-api/<item>#<ref>
+#   scripts/smoke-install.sh url <base>     # <base>/<item>.json, e.g. the live
+#                                           # https://www.logo.dev/r
 #
 # Local mode rewrites our logo-dev/logo-api/<item> dependencies to the
 # localhost copy. Without that, the CLI resolves them from main — a #ref on
@@ -85,6 +87,8 @@ failed=0
 for item in $(items); do
   if [[ "$MODE" == "local" ]]; then
     source="http://127.0.0.1:$PORT/$item.json"
+  elif [[ "$MODE" == "url" ]]; then
+    source="${REF%/}/$item.json"
   else
     source="logo-dev/logo-api/$item#$REF"
   fi

@@ -164,6 +164,8 @@ pnpm typecheck
 pnpm build       # shadcn build → r/*.json (committed; CI checks it's in sync)
 pnpm validate    # shadcn registry validate
 pnpm smoke       # dry-run `shadcn add` of every item from the built r/
+STYLE=base-nova pnpm smoke  # the same, into a Base UI project
+scripts/smoke-install.sh url https://www.logo.dev/r  # through the live URL (runs daily in CI)
 ```
 
 Component sources live in `registry/new-york/`. An item that depends on another of our items names it in the GitHub form (`logo-dev/logo-api/logo`), never a bare name (that means the built-in shadcn item) or a www.logo.dev URL. `components/ui/` holds vendored shadcn primitives used only for typechecking — consumers get those from ui.shadcn.com.

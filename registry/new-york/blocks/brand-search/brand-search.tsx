@@ -168,9 +168,11 @@ function BrandSearch({
           <ChevronsUpDownIcon className="size-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
+      {/* Match the trigger width. Radix sets the first variable and Base UI
+          the second; installs into either library get one of them. */}
       <PopoverContent
         align="start"
-        className="w-(--radix-popover-trigger-width) p-0"
+        className="w-[var(--radix-popover-trigger-width,var(--anchor-width))] p-0"
       >
         {/* The API filters server-side; local cmdk filtering must stay off. */}
         <Command shouldFilter={false}>
