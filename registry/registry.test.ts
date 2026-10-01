@@ -11,6 +11,9 @@ const OWN_ITEMS = new Set(registry.items.map((item) => item.name));
 // Vercel bot checkpoint, which answers the shadcn CLI with HTTP 429.
 const GITHUB_ITEM = /^logo-dev\/logo-api\/([a-z-]+)$/;
 const SHADCN_ITEM = /^[a-z-]+$/;
+// A Radix-only CSS variable, e.g. --radix-popover-trigger-width. Base UI
+// projects (the shadcn default since 2026-07) never set these.
+const RADIX_VAR = /var\(--radix-[a-z-]+\)|\(--radix-[a-z-]+\)/;
 
 const builtItems = () =>
   readdirSync(join(ROOT, "r"))
@@ -63,6 +66,17 @@ describe("built r/ output", () => {
     }
     for (const dep of item.registryDependencies ?? []) {
       expect(dep).not.toContain("www.logo.dev");
+    }
+  });
+});
+
+describe("primitive library support", () => {
+  it.each(
+    builtItems()
+  )("$name never relies on a Radix-only CSS variable", (item) => {
+    for (const file of item.files) {
+      // Allowed only with a fallback: var(--radix-…, var(--anchor-…)).
+      expect(file.content).not.toMatch(RADIX_VAR);
     }
   });
 });
