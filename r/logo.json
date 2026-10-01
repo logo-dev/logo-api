@@ -5,7 +5,7 @@
   "author": "Logo.dev <team@logo.dev>",
   "description": "A company logo that never breaks: look up by domain, name, ticker, crypto, or ISIN with a retina srcSet, automatic dark-mode variants, and layered fallbacks (API monogram, local initials, or a custom node).",
   "registryDependencies": [
-    "https://www.logo.dev/r/logo-lib.json"
+    "logo-dev/logo-api/logo-lib"
   ],
   "files": [
     {
@@ -17,7 +17,7 @@
   "envVars": {
     "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
   },
-  "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://docs.logo.dev/platform/attribution",
+  "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://www.logo.dev/docs/platform/attribution",
   "categories": [
     "logos",
     "branding"

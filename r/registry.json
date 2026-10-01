@@ -34,11 +34,11 @@
           "type": "registry:ui"
         }
       ],
-      "registryDependencies": ["https://www.logo.dev/r/logo-lib.json"],
+      "registryDependencies": ["logo-dev/logo-api/logo-lib"],
       "envVars": {
         "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
       },
-      "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://docs.logo.dev/platform/attribution"
+      "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://www.logo.dev/docs/platform/attribution"
     },
     {
       "name": "logo-avatar",
@@ -53,10 +53,11 @@
           "type": "registry:ui"
         }
       ],
-      "registryDependencies": ["avatar", "https://www.logo.dev/r/logo.json"],
+      "registryDependencies": ["avatar", "logo-dev/logo-api/logo"],
       "envVars": {
         "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
-      }
+      },
+      "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). Free plans require attribution in production: https://www.logo.dev/docs/platform/attribution"
     },
     {
       "name": "attribution",
@@ -71,7 +72,8 @@
           "type": "registry:ui"
         }
       ],
-      "registryDependencies": ["utils"]
+      "registryDependencies": ["utils"],
+      "docs": "Free plans must show this link in production wherever Logo.dev logos appear. Paid plans can remove it. Rules: https://www.logo.dev/docs/platform/attribution"
     },
     {
       "name": "logo-wall",
@@ -87,12 +89,13 @@
         }
       ],
       "registryDependencies": [
-        "https://www.logo.dev/r/logo.json",
-        "https://www.logo.dev/r/attribution.json"
+        "logo-dev/logo-api/logo",
+        "logo-dev/logo-api/attribution"
       ],
       "envVars": {
         "NEXT_PUBLIC_LOGO_DEV_TOKEN": ""
-      }
+      },
+      "docs": "Set NEXT_PUBLIC_LOGO_DEV_TOKEN (free key: https://www.logo.dev/dashboard). The wall shows the attribution link that free plans require; on a paid plan, pass attribution={false}."
     },
     {
       "name": "brand-search",
@@ -120,7 +123,7 @@
         "button",
         "command",
         "popover",
-        "https://www.logo.dev/r/logo-lib.json"
+        "logo-dev/logo-api/logo-lib"
       ],
       "envVars": {
         "LOGO_DEV_SECRET_KEY": ""

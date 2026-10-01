@@ -1,7 +1,7 @@
 /**
  * Logo.dev URL builder and shared types.
  *
- * Docs: https://docs.logo.dev
+ * Docs: https://www.logo.dev/docs
  * Get a free publishable (pk_) key: https://www.logo.dev/dashboard
  */
 
