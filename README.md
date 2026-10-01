@@ -17,9 +17,8 @@
 [![Docs](https://img.shields.io/badge/Docs-logo.dev%2Fdocs-18181B?style=flat-square)](https://www.logo.dev/docs)
 [![Get an API key](https://img.shields.io/badge/API%20key-free-18181B?style=flat-square)](https://www.logo.dev/signup)
 [![License: MIT](https://img.shields.io/badge/License-MIT-18181B?style=flat-square)](LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/logo-dev/logo-api?style=flat-square&color=18181B)](https://github.com/logo-dev/logo-api)
 
-**100M+ companies** · **30M+ requests a day** · **80K+ developers** · **&lt;50ms median** · **150+ edge locations** · **500K free a month**
+**100M+ companies** · **30M+ requests/day** · **80K+ developers** · **&lt;50ms median** · **500K free/month**
 
 [Docs](https://www.logo.dev/docs) · [Get an API key](https://www.logo.dev/signup) · [Pricing](https://www.logo.dev/pricing) · [Changelog](https://www.logo.dev/docs/changelog)
 
