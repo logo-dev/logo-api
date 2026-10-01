@@ -1,0 +1,51 @@
+name: Live registry
+# Installs every item through the public https://www.logo.dev/r URL, the
+# way a customer does. That URL is served by logo-marketing behind the Vercel
+# firewall; on 2026-10-01 its Bot Protection answered the shadcn CLI with
+# HTTP 429 for three months before anyone noticed (DASH-711). A failed
+# scheduled run notifies the person who last changed this file's schedule.
+on:
+  schedule:
+    - cron: "17 13 * * *"
+  workflow_dispatch:
+    inputs:
+      base:
+        description: Registry base URL to test
+        default: https://www.logo.dev/r
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/registry-live.yml
+      - scripts/smoke-install.sh
+permissions:
+  contents: read
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    env:
+      BASE: ${{ inputs.base || 'https://www.logo.dev/r' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      # The directory and the MCP server read the index, so it must list
+      # every item in this repo's registry.json.
+      - name: Index lists every item
+        run: |
+          curl -sSf "$BASE/registry.json" -o index.json
+          node -e '
+            const live = require("./index.json").items.map((i) => i.name).sort();
+            const repo = require("./registry.json").items.map((i) => i.name).sort();
+            if (JSON.stringify(live) !== JSON.stringify(repo)) {
+              console.error("live:", live, "\nrepo:", repo);
+              process.exit(1);
+            }
+            console.log(`index ok: ${live.length} items`);
+          '
+      - name: Install every item (Radix project)
+        run: scripts/smoke-install.sh url "$BASE"
+      - name: Install every item (Base UI project)
+        run: scripts/smoke-install.sh url "$BASE"
+        env:
+          STYLE: base-nova
