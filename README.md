@@ -1,91 +1,76 @@
+<a name="readme-top"></a>
+
 <div align="center">
 
-# Logo.dev
+<a href="https://www.logo.dev">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo-dark.svg" />
+    <img src="assets/logo-light.svg" alt="Logo.dev" width="280" />
+  </picture>
+</a>
 
-### Every company logo, one API request
+<h3>Every company logo, one API request</h3>
 
-**The highest-quality logo and brand API.** Pass a domain, ticker, or crypto symbol — get back a clean, correctly-sized logo, served from a global CDN. No sourcing, no hosting, no broken images.
+<p>Pass a domain, ticker, or company name. Get back a clean logo from a global CDN.<br />No sourcing, no hosting, no broken images.</p>
 
 [![Website](https://img.shields.io/badge/Website-logo.dev-18181B?style=flat-square)](https://www.logo.dev)
-[![Documentation](https://img.shields.io/badge/Docs-logo.dev%2Fdocs-18181B?style=flat-square)](https://www.logo.dev/docs)
-[![Get an API key](https://img.shields.io/badge/Get%20an%20API%20key-free-18181B?style=flat-square)](https://www.logo.dev/signup)
+[![Docs](https://img.shields.io/badge/Docs-logo.dev%2Fdocs-18181B?style=flat-square)](https://www.logo.dev/docs)
+[![Get an API key](https://img.shields.io/badge/API%20key-free-18181B?style=flat-square)](https://www.logo.dev/signup)
 [![License: MIT](https://img.shields.io/badge/License-MIT-18181B?style=flat-square)](LICENSE)
 
-**50M+ companies** · **30M+ requests/day** · **55K+ developers** · **&lt;50ms median** · **150+ edge locations** · **500K free/mo**
+**100M+ companies** · **30M+ requests/day** · **80K+ developers** · **&lt;50ms median** · **500K free/month**
+
+[Docs](https://www.logo.dev/docs) · [Get an API key](https://www.logo.dev/signup) · [Pricing](https://www.logo.dev/pricing) · [Changelog](https://www.logo.dev/docs/changelog)
 
 </div>
 
 ---
 
-## One `<img>` tag, any logo
+## Why Logo.dev
 
-There's no SDK to install and no logo files to host. Get your free [publishable key](https://www.logo.dev/dashboard), then hotlink the CDN:
+- **A URL is the integration.** No SDK, no scraper, no image storage. Put the URL in an `<img>` tag.
+- **Works in any stack.** It is an image, so it renders in HTML, React, iOS, Android, email, and spreadsheets.
+- **Fast everywhere.** A global CDN answers in under 50ms at the median, from 150+ edge locations.
+- **Always current.** 100M+ companies, refreshed daily. Rebrands show up without a code change.
+- **Five ways to look up a company.** Domain, company name, stock ticker, crypto symbol, or ISIN.
+- **More than logos.** Turn a domain into a full brand profile, or a company name into its domain.
 
-```html
-<img src="https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY" alt="Stripe logo" />
-```
+## Products
 
-That's the whole integration. Swap `stripe.com` for any domain and you get a crisp, correctly-sized logo back in milliseconds.
-
-<!-- LIVE DEMO — uncomment after swapping LOGO_DEV_PUBLISHABLE_KEY for the team's public demo publishable key,
-     so the row renders real logos straight from img.logo.dev on the repo page:
-
-> **Live demo:** the row below renders straight from `img.logo.dev`:
->
-> <img src="https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Stripe" height="40" />
-> <img src="https://img.logo.dev/shopify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Shopify" height="40" />
-> <img src="https://img.logo.dev/airbnb.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Airbnb" height="40" />
-> <img src="https://img.logo.dev/spotify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Spotify" height="40" />
--->
-
----
-
-## Why logo.dev
-
-- **No infrastructure.** No scraping, storing, resizing, or cache-busting. A URL is the integration.
-- **One tag, every framework.** It's just an image — drop it into HTML, React, Vue, iOS, Android, or a spreadsheet.
-- **Built for production.** A global CDN with a `<50ms` median response across `150+` edge locations.
-- **Always current.** `50M+` companies, updated daily — no stale or broken logos.
-- **Flexible output.** Size, retina, format (`PNG`/`WebP`), and light/dark `theme` variants via query params.
-- **More than logos.** Resolve companies by stock ticker or crypto symbol, search brands by name, or pull structured brand data.
-
----
-
-## Endpoints
-
-Every logo is a `GET` against `img.logo.dev`. The REST endpoints return structured brand data.
-
-| Lookup | Example | Docs |
+| Product | What it does | Call |
 | --- | --- | --- |
-| **By domain** | `img.logo.dev/stripe.com` | [Logo images →](https://www.logo.dev/docs/logo-images/introduction) |
-| **By stock ticker** | `img.logo.dev/ticker/AAPL` | [Ticker →](https://www.logo.dev/docs/logo-images/ticker) |
-| **By crypto symbol** | `img.logo.dev/crypto/BTC` | [Crypto →](https://www.logo.dev/docs/logo-images/crypto) |
-| **By company name** | `img.logo.dev/name/stripe` | [Name →](https://www.logo.dev/docs/logo-images/name) |
-| **Brand Search** | Find a company when you only have a name | [Brand Search →](https://www.logo.dev/docs/brand-search/introduction) |
-| **Describe** | Colors, socials, and structured brand fields | [Describe →](https://www.logo.dev/docs/describe/introduction) |
+| **[Logo API](https://www.logo.dev/docs/logo-images/introduction)** | Logo images by domain, name, ticker, crypto, or ISIN | `GET img.logo.dev/{domain}` |
+| **[Search API](https://www.logo.dev/docs/brand-search/introduction)** | Find a company's domain from its name, with typeahead | `GET api.logo.dev/search?q=` |
+| **[Brand API](https://www.logo.dev/docs/brand/introduction)** | Logo, brandmark, colors, description, and socials as JSON | `GET api.logo.dev/brand/{domain}` |
+| **[Transaction API](https://www.logo.dev/docs/transaction/introduction)** | Turn a card transaction string into a merchant and its brand. Private beta. | `POST api.logo.dev/transaction` |
 
-Common parameters: `token` (required), `size`, `retina`, `format`, `theme`. Full reference at [logo.dev/docs](https://www.logo.dev/docs).
+The Logo API takes your publishable key (`pk_`) and is safe in a browser. The REST APIs take your secret key (`sk_`) and belong on a server. Both keys are on your [dashboard](https://www.logo.dev/dashboard/api-keys).
 
 ---
 
 ## Quickstart
 
-Lead with HTML, then reach for your stack. Every snippet uses the same CDN URL — only the wrapper changes.
+[Sign up](https://www.logo.dev/signup) for a free key, then pick what you need.
+
+### Show a logo
 
 ```html
-<!-- HTML -->
 <img src="https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY" alt="Stripe logo" />
 ```
 
-```jsx
-// React — works with any bundler; in Next.js, read the token from
-// process.env.NEXT_PUBLIC_LOGO_DEV_PUBLISHABLE_KEY instead
-const LOGO_DEV_TOKEN = "LOGO_DEV_PUBLISHABLE_KEY";
+Swap `stripe.com` for any domain. That is the whole integration.
 
+<details>
+<summary><strong>React, cURL, Python</strong></summary>
+
+<br />
+
+```jsx
+// React. In Next.js, read the key from process.env.NEXT_PUBLIC_LOGO_DEV_TOKEN.
 function CompanyLogo({ domain }) {
   return (
     <img
-      src={`https://img.logo.dev/${domain}?token=${LOGO_DEV_TOKEN}`}
+      src={`https://img.logo.dev/${domain}?token=LOGO_DEV_PUBLISHABLE_KEY`}
       alt={`${domain} logo`}
     />
   );
@@ -93,7 +78,7 @@ function CompanyLogo({ domain }) {
 ```
 
 ```bash
-# cURL
+# cURL: save a 128px PNG
 curl "https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=128&format=png" --output stripe.png
 ```
 
@@ -106,51 +91,104 @@ def get_company_logo(domain: str) -> bytes:
     return requests.get(url).content
 ```
 
+More stacks (Next.js, Vue, Ruby, PHP, Swift, Kotlin, Google Sheets, Excel) are in the [docs](https://www.logo.dev/docs/integrations/introduction).
+
+</details>
+
+### Look up by something other than a domain
+
+| Lookup | URL |
+| --- | --- |
+| Domain | `img.logo.dev/stripe.com` |
+| Company name | `img.logo.dev/name/stripe` |
+| Stock ticker | `img.logo.dev/ticker/AAPL` |
+| Crypto symbol | `img.logo.dev/crypto/BTC` |
+| ISIN | `img.logo.dev/isin/US0378331005` |
+
+Every lookup takes the same parameters:
+
+| Parameter | Values | Default |
+| --- | --- | --- |
+| `size` | 1 to 800 pixels | `128` |
+| `format` | `jpg`, `png`, `webp`, or `svg` (Enterprise) | `jpg` |
+| `theme` | `auto`, `light`, or `dark` | `auto` |
+| `retina` | `true` renders at 2× the size | `false` |
+| `greyscale` | `true` returns a black-and-white logo | `false` |
+| `fallback` | `monogram`, or `404` to handle a missing logo yourself | `monogram` |
+
+### Get a full brand profile
+
+```bash
+curl --header "Authorization: Bearer LOGO_DEV_SECRET_KEY" "https://api.logo.dev/brand/sweetgreen.com"
+```
+
 <details>
-<summary><strong>More languages</strong> — Next.js, Vue, Ruby, PHP, Swift (iOS), Kotlin (Android), Google Sheets &amp; Excel</summary>
+<summary><strong>Response</strong></summary>
 
 <br />
 
-Full, copy-paste-ready snippets for every stack live in the docs: **[logo.dev/docs →](https://www.logo.dev/docs)**
+```json
+{
+  "name": "sweetgreen",
+  "domain": "sweetgreen.com",
+  "description": "Simple, seasonal, healthy salads and grain bowls made in-house from scratch.",
+  "socials": {
+    "instagram": "https://www.instagram.com/sweetgreen/",
+    "twitter": "https://x.com/sweetgreen"
+  },
+  "logo": "https://img.logo.dev/sweetgreen.com?token=LOGO_DEV_PUBLISHABLE_KEY",
+  "brandmark": "https://img.logo.dev/brand/sweetgreen.com/…?token=LOGO_DEV_PUBLISHABLE_KEY",
+  "colors": [
+    { "hex": "#e4ff55", "r": 228, "g": 255, "b": 85 },
+    { "hex": "#0a4b2b", "r": 10, "g": 75, "b": 43 }
+  ]
+}
+```
 
-- **Next.js** — `next/image` with `img.logo.dev` allowlisted in `remotePatterns`
-- **Vue** — bind the URL to `:src`
-- **Ruby** — `Net::HTTP.get`
-- **PHP** — `file_get_contents`
-- **Swift (iOS)** — `AsyncImage`
-- **Android (Kotlin)** — Coil or Picasso
-- **Google Sheets / Excel** — `=IMAGE("https://img.logo.dev/" & A1 & "?token=LOGO_DEV_PUBLISHABLE_KEY")`
+Abridged. All fields are in the [Brand API docs](https://www.logo.dev/docs/brand/introduction).
+
+</details>
+
+### Find a company by name
+
+```bash
+curl --header "Authorization: Bearer LOGO_DEV_SECRET_KEY" "https://api.logo.dev/search?q=notion"
+```
+
+<details>
+<summary><strong>Response</strong></summary>
+
+<br />
+
+```json
+[
+  { "name": "Notion", "domain": "notion.com", "logo_url": "https://img.logo.dev/notion.com?token=…" },
+  { "name": "Notion Capital", "domain": "notioncapital.com", "logo_url": "https://img.logo.dev/notioncapital.com?token=…" }
+]
+```
 
 </details>
 
 ---
 
-## React components (shadcn/ui)
+## React components
 
-For React apps, this repo is also the official Logo.dev [shadcn/ui](https://ui.shadcn.com) registry. It ships production-grade components for the logo patterns most apps end up rebuilding by hand: image fallbacks, dark mode, retina, and debounced company search.
-
-Install a component with the shadcn CLI:
+This repo is the official Logo.dev [shadcn/ui](https://ui.shadcn.com) registry. Add production-ready logo components to your app with one command:
 
 ```bash
 npx shadcn@latest add https://www.logo.dev/r/logo.json
 ```
 
-You can also install straight from this repo, pinned to a branch, tag, or commit:
-
-```bash
-npx shadcn@latest add logo-dev/logo-api/logo
-```
-
 | Component | What you get |
 | --- | --- |
-| `logo` | A logo that never breaks: domain/name/ticker/crypto/ISIN lookup, retina srcSet, automatic dark-mode variants, monogram/initials/custom fallbacks |
-| `logo-avatar` | A logo in a shadcn Avatar shell with initials fallback — CRM rows, transaction feeds |
-| `brand-search` | Company autocomplete combobox backed by the Search API, with a Next.js route that keeps your secret key server-side |
-| `logo-wall` | Customer/integration logo grid from a list of domains, grayscale-to-color hover |
-| `attribution` | The attribution link free plans require in production |
-| `logo-lib` | The typed URL builder underneath all of the above, useful on its own |
+| `logo` | A logo that never breaks. Five lookup types, retina `srcSet`, dark-mode variants, and monogram or initials fallbacks. |
+| `logo-avatar` | A logo in a shadcn Avatar, with an initials fallback. For CRM rows and transaction feeds. |
+| `brand-search` | Company autocomplete on the Search API, with a Next.js route that keeps your secret key on the server. |
+| `logo-wall` | A customer logo grid from a list of domains, grey until hover. |
+| `attribution` | The link free plans show in production. |
+| `logo-lib` | The typed URL builder under all of the above. |
 
-Components read your publishable key from `NEXT_PUBLIC_LOGO_DEV_TOKEN`; `brand-search` also needs `LOGO_DEV_SECRET_KEY` on the server. Both are added to `.env.local` on install. Full guide: **[shadcn/ui components →](https://www.logo.dev/docs/integrations/shadcn)**
+The CLI adds the key variables to `.env.local`. The components work in Radix and Base UI projects. You can also install from this repo, pinned to a branch, tag, or commit: `npx shadcn@latest add logo-dev/logo-api/logo`. Full guide: [shadcn/ui components](https://www.logo.dev/docs/integrations/shadcn).
 
 <details>
 <summary><strong>Developing the registry</strong></summary>
@@ -168,106 +206,90 @@ STYLE=base-nova pnpm smoke  # the same, into a Base UI project
 scripts/smoke-install.sh url https://www.logo.dev/r  # through the live URL (runs daily in CI)
 ```
 
-Component sources live in `registry/new-york/`. An item that depends on another of our items names it in the GitHub form (`logo-dev/logo-api/logo`), never a bare name (that means the built-in shadcn item) or a www.logo.dev URL. `components/ui/` holds vendored shadcn primitives used only for typechecking — consumers get those from ui.shadcn.com.
+Component sources live in `registry/new-york/`. An item that depends on another of our items names it in the GitHub form (`logo-dev/logo-api/logo`), never a bare name (that means the built-in shadcn item) or a www.logo.dev URL. `components/ui/` holds vendored shadcn primitives used only for typechecking. Consumers get those from ui.shadcn.com.
 
 </details>
+
+## Integrations
+
+| Build with | Spreadsheets and slides |
+| --- | --- |
+| [Next.js](https://www.logo.dev/docs/integrations/nextjs) · [shadcn/ui](https://www.logo.dev/docs/integrations/shadcn) · [v0](https://www.logo.dev/docs/integrations/v0) · [Lovable](https://www.logo.dev/docs/integrations/lovable) · [Bolt](https://www.logo.dev/docs/integrations/bolt) | [Google Sheets](https://www.logo.dev/docs/integrations/google-sheets) · [Excel](https://www.logo.dev/docs/integrations/excel) · [PowerPoint](https://www.logo.dev/docs/integrations/powerpoint) |
 
 ---
 
 ## Migrating from Clearbit
 
-**Clearbit's Logo API shut down on December 8, 2025.** If your app still points at `logo.clearbit.com`, the logos are broken.
+**Clearbit's Logo API shut down on December 8, 2025.** If your app still points at `logo.clearbit.com`, its logos are broken.
 
-**We're the same team that originally built the Clearbit Logo API**, and logo.dev is the migration path recommended by Clearbit / HubSpot. It's a drop-in replacement — swap the base URL and add a token. Your existing parameters keep working.
+We are the team that built the original Clearbit Logo API, and Clearbit and HubSpot recommend Logo.dev as the replacement. Swap the base URL and add a token. Your parameters keep working.
 
 ```diff
 - https://logo.clearbit.com/stripe.com
 + https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY
 ```
 
-Most migrations take a few minutes. Full guide: **[Migrating from Clearbit →](https://www.logo.dev/docs/migrations/clearbit)**
+Full guide: [Migrating from Clearbit](https://www.logo.dev/docs/migrations/clearbit). Coming from Brandfetch? See [that guide](https://www.logo.dev/docs/migrations/brandfetch).
 
 > "We built logo enrichment at Clearbit because developers needed it. Logo.dev is what I wish we could have built. Comprehensive, fast, and they actually keep the logos updated. Clear upgrade."
 >
-> — **Alex MacCaw**, Founder, Clearbit
+> **Alex MacCaw**, Founder, Clearbit
 
----
+<!-- LIVE DEMO: uncomment after swapping LOGO_DEV_PUBLISHABLE_KEY for the team's public demo publishable key,
+     so the row renders real logos straight from img.logo.dev on the repo page:
 
-## Trusted by developers
-
-`55K+` developers build on logo.dev — from CRMs and fintech dashboards to AI products.
-
-<!-- CUSTOMER STRIP — uncomment after swapping LOGO_DEV_PUBLISHABLE_KEY for the public demo key.
-     Renders customer logos live through the API itself (companies from logo.dev's public reference set):
-
-<p>
-  <img src="https://img.logo.dev/linear.app?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Linear" height="32" />&nbsp;&nbsp;
-  <img src="https://img.logo.dev/close.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Close" height="32" />&nbsp;&nbsp;
-  <img src="https://img.logo.dev/perplexity.ai?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Perplexity" height="32" />&nbsp;&nbsp;
-  <img src="https://img.logo.dev/mutinyhq.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=48" alt="Mutiny" height="32" />
+<p align="center">
+  <img src="https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Stripe" height="40" />
+  <img src="https://img.logo.dev/shopify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Shopify" height="40" />
+  <img src="https://img.logo.dev/airbnb.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Airbnb" height="40" />
+  <img src="https://img.logo.dev/spotify.com?token=LOGO_DEV_PUBLISHABLE_KEY&size=64" alt="Spotify" height="40" />
 </p>
 -->
 
----
+## Attribution
 
-## Use logo.dev logos in your own README or site
-
-Because every logo is just an `<img>` URL, you can render any company's logo directly in your Markdown, docs, or app:
-
-```html
-<img src="https://img.logo.dev/github.com?token=LOGO_DEV_PUBLISHABLE_KEY" alt="GitHub" />
-```
-
-On the **free plan, commercial use requires a visible link back**; personal projects don't. Add this wherever you display logos:
+Commercial use on the free plan needs a visible link back. Personal projects and paid plans don't. Add this wherever you show logos:
 
 ```html
 <a href="https://logo.dev">Logos provided by Logo.dev</a>
 ```
 
-Prefer a badge? Drop in [`assets/powered-by-logo-dev.svg`](assets/powered-by-logo-dev.svg):
-
-[<img src="assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" />](https://logo.dev)
+Or use the badge: [<img src="assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" />](https://logo.dev)
 
 ```html
-<!-- Hotlink from your own site or README (URL resolves once this repo's default branch carries the asset): -->
 <a href="https://logo.dev"><img src="https://raw.githubusercontent.com/logo-dev/logo-api/main/assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" /></a>
 ```
 
-Full rules and placement guidance: **[Attribution →](https://www.logo.dev/docs/platform/attribution)**
-
----
+Placement rules: [Attribution](https://www.logo.dev/docs/platform/attribution).
 
 ## FAQ
 
-**Is it really free?**
-Yes — `500K` requests/month on the free tier. Commercial use on the free plan needs attribution; paid plans remove it. See [pricing](https://www.logo.dev/pricing).
-
-**Do I need attribution?**
-Only for commercial use on the free plan. Personal projects don't. Details and edge cases: [Attribution](https://www.logo.dev/docs/platform/attribution).
-
-**I'm coming from Clearbit — what changes?**
-Swap the base URL and add a `token`. Your parameters carry over. See the [Clearbit migration guide](https://www.logo.dev/docs/migrations/clearbit).
-
-**What formats and sizes are supported?**
-`PNG` and `WebP`, with `size`, `retina`, and light/dark `theme` options. See the [logo image docs](https://www.logo.dev/docs/logo-images/introduction).
+**Is it free?**
+Yes. The free plan includes 500K logo requests a month. See [pricing](https://www.logo.dev/pricing).
 
 **What happens when a logo isn't found?**
-You get a monogram fallback by default, or request a `404` to handle fallbacks yourself.
+You get a generated monogram. Pass `fallback=404` to get a `404` and show your own fallback instead.
 
----
+**Can I use the logos in my README or docs?**
+Yes. Every logo is an image URL, so it renders in Markdown. Add the attribution link on the free plan if the use is commercial.
+
+**How do I report a wrong logo?**
+[Open an issue](https://github.com/logo-dev/logo-api/issues) or [request an update](https://www.logo.dev/docs/support/request-updates). Most corrections ship within 24 hours.
 
 ## Resources
 
-- 📚 **[Documentation](https://www.logo.dev/docs)** — full API reference and guides
-- 🔑 **[Get an API key](https://www.logo.dev/signup)** — free, no credit card
-- 💳 **[Pricing](https://www.logo.dev/pricing)** — free tier and paid plans
-- 🖥️ **[Dashboard](https://www.logo.dev/dashboard)** — manage keys and usage
-- 🐛 **[Report an issue](https://github.com/logo-dev/logo-api/issues)** — bugs, incorrect logos, or feature requests
+- [Documentation](https://www.logo.dev/docs): API reference and guides
+- [Get an API key](https://www.logo.dev/signup): free, no credit card
+- [Pricing](https://www.logo.dev/pricing): free and paid plans
+- [Dashboard](https://www.logo.dev/dashboard): keys and usage
+- [Status](https://www.logo.dev/docs/support/status): uptime and incidents
 
 ## Contributing
 
-Found an incorrect logo, hit a problem, or have a feature request? [Open an issue](https://github.com/logo-dev/logo-api/issues) — we triage them actively, and most logo corrections ship within 24 hours.
+Found a wrong logo, hit a bug, or want a feature? [Open an issue](https://github.com/logo-dev/logo-api/issues). We triage every one.
 
 ## License
 
 [MIT](LICENSE) © Logo.dev
+
+<p align="right"><a href="#readme-top">Back to top ↑</a></p>
