@@ -8,7 +8,7 @@
     "button",
     "command",
     "popover",
-    "https://www.logo.dev/r/logo-lib.json"
+    "logo-dev/logo-api/logo-lib"
   ],
   "files": [
     {

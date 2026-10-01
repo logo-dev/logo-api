@@ -32,3 +32,25 @@ jobs:
         run: pnpm build
       - name: Built registry output must be committed and in sync
         run: git diff --exit-code r/
+      - name: Validate registry
+        run: pnpm validate
+      # Dry-run `shadcn add` of every item from this commit's r/, served on
+      # localhost, so an unresolvable dependency fails here and not for a
+      # customer.
+      - name: Install every item
+        run: pnpm smoke
+
+  # After a merge, install through the public GitHub form customers use. A
+  # #ref does not carry to dependencies (they resolve from main), so this
+  # only tests the commit under test once it is main.
+  install-from-github:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install every item from logo-dev/logo-api
+        run: scripts/smoke-install.sh github "$GITHUB_SHA"

@@ -8,7 +8,7 @@ interface AttributionProps
 
 /**
  * Attribution link required on Logo.dev free plans in production.
- * See https://docs.logo.dev/platform/attribution
+ * See https://www.logo.dev/docs/platform/attribution
  *
  * Uses rel="noopener" without "noreferrer" on purpose: the referrer is how
  * attribution is verified.

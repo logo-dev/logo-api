@@ -7,7 +7,7 @@
 **The highest-quality logo and brand API.** Pass a domain, ticker, or crypto symbol — get back a clean, correctly-sized logo, served from a global CDN. No sourcing, no hosting, no broken images.
 
 [![Website](https://img.shields.io/badge/Website-logo.dev-18181B?style=flat-square)](https://www.logo.dev)
-[![Documentation](https://img.shields.io/badge/Docs-docs.logo.dev-18181B?style=flat-square)](https://docs.logo.dev)
+[![Documentation](https://img.shields.io/badge/Docs-logo.dev%2Fdocs-18181B?style=flat-square)](https://www.logo.dev/docs)
 [![Get an API key](https://img.shields.io/badge/Get%20an%20API%20key-free-18181B?style=flat-square)](https://www.logo.dev/signup)
 [![License: MIT](https://img.shields.io/badge/License-MIT-18181B?style=flat-square)](LICENSE)
 
@@ -57,14 +57,14 @@ Every logo is a `GET` against `img.logo.dev`. The REST endpoints return structur
 
 | Lookup | Example | Docs |
 | --- | --- | --- |
-| **By domain** | `img.logo.dev/stripe.com` | [Logo images →](https://docs.logo.dev/logo-images/introduction) |
-| **By stock ticker** | `img.logo.dev/ticker/AAPL` | [Ticker →](https://docs.logo.dev/logo-images/ticker) |
-| **By crypto symbol** | `img.logo.dev/crypto/BTC` | [Crypto →](https://docs.logo.dev/logo-images/crypto) |
-| **By company name** | `img.logo.dev/name/stripe` | [Name →](https://docs.logo.dev/logo-images/name) |
-| **Brand Search** | Find a company when you only have a name | [Brand Search →](https://docs.logo.dev/brand-search/introduction) |
-| **Describe** | Colors, socials, and structured brand fields | [Describe →](https://docs.logo.dev/describe/introduction) |
+| **By domain** | `img.logo.dev/stripe.com` | [Logo images →](https://www.logo.dev/docs/logo-images/introduction) |
+| **By stock ticker** | `img.logo.dev/ticker/AAPL` | [Ticker →](https://www.logo.dev/docs/logo-images/ticker) |
+| **By crypto symbol** | `img.logo.dev/crypto/BTC` | [Crypto →](https://www.logo.dev/docs/logo-images/crypto) |
+| **By company name** | `img.logo.dev/name/stripe` | [Name →](https://www.logo.dev/docs/logo-images/name) |
+| **Brand Search** | Find a company when you only have a name | [Brand Search →](https://www.logo.dev/docs/brand-search/introduction) |
+| **Describe** | Colors, socials, and structured brand fields | [Describe →](https://www.logo.dev/docs/describe/introduction) |
 
-Common parameters: `token` (required), `size`, `retina`, `format`, `theme`. Full reference at [docs.logo.dev](https://docs.logo.dev).
+Common parameters: `token` (required), `size`, `retina`, `format`, `theme`. Full reference at [logo.dev/docs](https://www.logo.dev/docs).
 
 ---
 
@@ -111,7 +111,7 @@ def get_company_logo(domain: str) -> bytes:
 
 <br />
 
-Full, copy-paste-ready snippets for every stack live in the docs: **[docs.logo.dev →](https://docs.logo.dev)**
+Full, copy-paste-ready snippets for every stack live in the docs: **[logo.dev/docs →](https://www.logo.dev/docs)**
 
 - **Next.js** — `next/image` with `img.logo.dev` allowlisted in `remotePatterns`
 - **Vue** — bind the URL to `:src`
@@ -150,7 +150,7 @@ npx shadcn@latest add logo-dev/logo-api/logo
 | `attribution` | The attribution link free plans require in production |
 | `logo-lib` | The typed URL builder underneath all of the above, useful on its own |
 
-Components read your publishable key from `NEXT_PUBLIC_LOGO_DEV_TOKEN`; `brand-search` also needs `LOGO_DEV_SECRET_KEY` on the server. Both are added to `.env.local` on install. Full guide: **[shadcn/ui components →](https://docs.logo.dev/integrations/shadcn)**
+Components read your publishable key from `NEXT_PUBLIC_LOGO_DEV_TOKEN`; `brand-search` also needs `LOGO_DEV_SECRET_KEY` on the server. Both are added to `.env.local` on install. Full guide: **[shadcn/ui components →](https://www.logo.dev/docs/integrations/shadcn)**
 
 <details>
 <summary><strong>Developing the registry</strong></summary>
@@ -159,12 +159,14 @@ Components read your publishable key from `NEXT_PUBLIC_LOGO_DEV_TOKEN`; `brand-s
 
 ```bash
 pnpm install
-pnpm test        # URL builder unit tests
+pnpm test        # URL builder and registry tests
 pnpm typecheck
 pnpm build       # shadcn build → r/*.json (committed; CI checks it's in sync)
+pnpm validate    # shadcn registry validate
+pnpm smoke       # dry-run `shadcn add` of every item from the built r/
 ```
 
-Component sources live in `registry/new-york/`. `components/ui/` holds vendored shadcn primitives used only for typechecking — consumers get those from ui.shadcn.com.
+Component sources live in `registry/new-york/`. An item that depends on another of our items names it in the GitHub form (`logo-dev/logo-api/logo`), never a bare name (that means the built-in shadcn item) or a www.logo.dev URL. `components/ui/` holds vendored shadcn primitives used only for typechecking — consumers get those from ui.shadcn.com.
 
 </details>
 
@@ -181,7 +183,7 @@ Component sources live in `registry/new-york/`. `components/ui/` holds vendored 
 + https://img.logo.dev/stripe.com?token=LOGO_DEV_PUBLISHABLE_KEY
 ```
 
-Most migrations take a few minutes. Full guide: **[Migrating from Clearbit →](https://docs.logo.dev/migrations/clearbit)**
+Most migrations take a few minutes. Full guide: **[Migrating from Clearbit →](https://www.logo.dev/docs/migrations/clearbit)**
 
 > "We built logo enrichment at Clearbit because developers needed it. Logo.dev is what I wish we could have built. Comprehensive, fast, and they actually keep the logos updated. Clear upgrade."
 >
@@ -229,7 +231,7 @@ Prefer a badge? Drop in [`assets/powered-by-logo-dev.svg`](assets/powered-by-log
 <a href="https://logo.dev"><img src="https://raw.githubusercontent.com/logo-dev/logo-api/main/assets/powered-by-logo-dev.svg" alt="Powered by Logo.dev" /></a>
 ```
 
-Full rules and placement guidance: **[Attribution →](https://docs.logo.dev/platform/attribution)**
+Full rules and placement guidance: **[Attribution →](https://www.logo.dev/docs/platform/attribution)**
 
 ---
 
@@ -239,13 +241,13 @@ Full rules and placement guidance: **[Attribution →](https://docs.logo.dev/pla
 Yes — `500K` requests/month on the free tier. Commercial use on the free plan needs attribution; paid plans remove it. See [pricing](https://www.logo.dev/pricing).
 
 **Do I need attribution?**
-Only for commercial use on the free plan. Personal projects don't. Details and edge cases: [Attribution](https://docs.logo.dev/platform/attribution).
+Only for commercial use on the free plan. Personal projects don't. Details and edge cases: [Attribution](https://www.logo.dev/docs/platform/attribution).
 
 **I'm coming from Clearbit — what changes?**
-Swap the base URL and add a `token`. Your parameters carry over. See the [Clearbit migration guide](https://docs.logo.dev/migrations/clearbit).
+Swap the base URL and add a `token`. Your parameters carry over. See the [Clearbit migration guide](https://www.logo.dev/docs/migrations/clearbit).
 
 **What formats and sizes are supported?**
-`PNG` and `WebP`, with `size`, `retina`, and light/dark `theme` options. See the [logo image docs](https://docs.logo.dev/logo-images/introduction).
+`PNG` and `WebP`, with `size`, `retina`, and light/dark `theme` options. See the [logo image docs](https://www.logo.dev/docs/logo-images/introduction).
 
 **What happens when a logo isn't found?**
 You get a monogram fallback by default, or request a `404` to handle fallbacks yourself.
@@ -254,7 +256,7 @@ You get a monogram fallback by default, or request a `404` to handle fallbacks y
 
 ## Resources
 
-- 📚 **[Documentation](https://docs.logo.dev)** — full API reference and guides
+- 📚 **[Documentation](https://www.logo.dev/docs)** — full API reference and guides
 - 🔑 **[Get an API key](https://www.logo.dev/signup)** — free, no credit card
 - 💳 **[Pricing](https://www.logo.dev/pricing)** — free tier and paid plans
 - 🖥️ **[Dashboard](https://www.logo.dev/dashboard)** — manage keys and usage

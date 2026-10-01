@@ -8,7 +8,7 @@ type LogoWallBrand = string | { domain: string; name?: string; href?: string };
 interface LogoWallProps extends ComponentProps<"div"> {
   /**
    * Renders the Logo.dev attribution link below the grid. Required on free
-   * plans in production (https://docs.logo.dev/platform/attribution) — only
+   * plans in production (https://www.logo.dev/docs/platform/attribution) — only
    * disable this on a paid plan.
    */
   attribution?: boolean;
