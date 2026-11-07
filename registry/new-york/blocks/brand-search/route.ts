@@ -6,10 +6,11 @@
  * auth before shipping it on a public site.
  */
 
-const SEARCH_API_URL = "https://api.logo.dev/search";
+const SEARCH_API_URL = "https://api.logo.dev/v2/search";
 const MAX_QUERY_LENGTH = 100;
 const HTTP_BAD_REQUEST = 400;
-const HTTP_NOT_FOUND = 404;
+const HTTP_PAYMENT_REQUIRED = 402;
+const HTTP_TOO_MANY_REQUESTS = 429;
 const HTTP_SERVER_ERROR = 500;
 const HTTP_BAD_GATEWAY = 502;
 
@@ -38,24 +39,45 @@ export async function GET(request: Request): Promise<Response> {
 
   let upstream: Response;
   try {
-    upstream = await fetch(`${SEARCH_API_URL}?q=${encodeURIComponent(query)}`, {
-      headers: { Authorization: `Bearer ${key}` },
-    });
+    upstream = await fetch(
+      `${SEARCH_API_URL}?q=${encodeURIComponent(query)}&method=typeahead`,
+      { headers: { Authorization: `Bearer ${key}` } }
+    );
   } catch {
     return Response.json([], { status: HTTP_BAD_GATEWAY });
   }
 
-  // The Search API returns 404 when nothing matches — that's an empty
-  // result, not an error.
-  if (upstream.status === HTTP_NOT_FOUND) {
-    return Response.json([]);
+  if (upstream.status === HTTP_PAYMENT_REQUIRED) {
+    return Response.json(
+      {
+        error:
+          "Your Logo.dev account is out of API credits. Add credits at https://www.logo.dev/dashboard",
+      },
+      {
+        headers: { "Cache-Control": "no-store" },
+        status: HTTP_PAYMENT_REQUIRED,
+      }
+    );
+  }
+  if (upstream.status === HTTP_TOO_MANY_REQUESTS) {
+    const headers = new Headers({ "Cache-Control": "no-store" });
+    const reset = upstream.headers.get("RateLimit-Reset");
+    if (reset) {
+      headers.set("Retry-After", reset);
+    }
+    return Response.json(
+      { error: "Too many searches. Try again in about a minute." },
+      { headers, status: HTTP_TOO_MANY_REQUESTS }
+    );
   }
   if (!upstream.ok) {
     return Response.json([], { status: HTTP_BAD_GATEWAY });
   }
 
-  const results: unknown = await upstream.json();
-  return Response.json(results, {
+  // useBrandSearch reads a bare array, so a custom `endpoint` only has to
+  // return the list.
+  const { data } = (await upstream.json()) as { data: unknown[] };
+  return Response.json(data, {
     headers: {
       "Cache-Control": "private, max-age=60, stale-while-revalidate=300",
     },

@@ -15,7 +15,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
-import { useBrandSearch } from "@/registry/new-york/hooks/use-brand-search";
+import {
+  BrandSearchError,
+  useBrandSearch,
+} from "@/registry/new-york/hooks/use-brand-search";
 import {
   type BrandSearchResult,
   withLogoParams,
@@ -57,6 +60,19 @@ interface BrandSearchProps {
 }
 
 const RESULT_LOGO_PX = 20;
+
+const DEFAULT_ERROR_MESSAGE = "Something went wrong. Try again.";
+
+// Written for the person using the form, who can't add credits. The route's
+// JSON body has the developer's version.
+const ERROR_MESSAGES: Record<number, string> = {
+  402: "Company search isn't available right now.",
+  429: "Too many searches. Try again in about a minute.",
+};
+
+const errorMessage = (error: Error): string =>
+  (error instanceof BrandSearchError && ERROR_MESSAGES[error.status]) ||
+  DEFAULT_ERROR_MESSAGE;
 
 const resultLogoUrl = (brand: BrandSearchResult) =>
   // logo_url already carries a token; just request a crisp, small render.
@@ -136,7 +152,7 @@ function BrandSearch({
   if (showStatus && isLoading) {
     status = "Searching…";
   } else if (showStatus && error) {
-    status = "Something went wrong. Try again.";
+    status = errorMessage(error);
   } else if (showStatus && query.trim()) {
     status = "No companies found.";
   }

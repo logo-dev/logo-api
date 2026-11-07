@@ -19,6 +19,17 @@ interface UseBrandSearchOptions {
 const DEFAULT_DEBOUNCE_MS = 200;
 const DEFAULT_LIMIT = 8;
 
+/** A failed response from the search endpoint, with its HTTP status. */
+class BrandSearchError extends Error {
+  readonly status: number;
+
+  constructor(status: number) {
+    super(`Brand search failed (${status})`);
+    this.name = "BrandSearchError";
+    this.status = status;
+  }
+}
+
 const performSearch = async (
   endpoint: string,
   query: string,
@@ -33,14 +44,11 @@ const performSearch = async (
     { signal }
   );
   if (!response.ok) {
-    throw new Error(`Brand search failed (${response.status})`);
+    throw new BrandSearchError(response.status);
   }
   const data = (await response.json()) as BrandSearchResult[];
   return data.slice(0, limit);
 };
-
-const isAbortError = (caught: unknown): boolean =>
-  caught instanceof DOMException && caught.name === "AbortError";
 
 /**
  * Debounced company search against the Logo.dev Search API. Stale in-flight
@@ -81,7 +89,9 @@ function useBrandSearch({
           }
         })
         .catch((caught: unknown) => {
-          if (!isAbortError(caught)) {
+          if (!controller.signal.aborted) {
+            // Results for the previous query would hide the failure.
+            setResults([]);
             setError(
               caught instanceof Error
                 ? caught
@@ -106,4 +116,4 @@ function useBrandSearch({
 }
 
 export type { UseBrandSearchOptions };
-export { useBrandSearch };
+export { BrandSearchError, useBrandSearch };
