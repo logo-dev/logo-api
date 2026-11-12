@@ -40,7 +40,7 @@
 | Product | What it does | Call |
 | --- | --- | --- |
 | **[Logo API](https://www.logo.dev/docs/logo-images/introduction)** | Logo images by domain, name, ticker, crypto, or ISIN | `GET img.logo.dev/{domain}` |
-| **[Search API](https://www.logo.dev/docs/brand-search/introduction)** | Find a company's domain from its name, with typeahead | `GET api.logo.dev/search?q=` |
+| **[Search API](https://www.logo.dev/docs/brand-search/introduction)** | Find a company's domain from its name, with typeahead | `GET api.logo.dev/v2/search?q=` |
 | **[Brand API](https://www.logo.dev/docs/brand/introduction)** | Logo, brandmark, colors, description, and socials as JSON | `GET api.logo.dev/brand/{domain}` |
 | **[Transaction API](https://www.logo.dev/docs/transaction/introduction)** | Turn a card transaction string into a merchant and its brand. Private beta. | `POST api.logo.dev/transaction` |
 
@@ -152,7 +152,7 @@ Abridged. All fields are in the [Brand API docs](https://www.logo.dev/docs/brand
 ### Find a company by name
 
 ```bash
-curl --header "Authorization: Bearer LOGO_DEV_SECRET_KEY" "https://api.logo.dev/search?q=notion"
+curl --header "Authorization: Bearer LOGO_DEV_SECRET_KEY" "https://api.logo.dev/v2/search?q=notion"
 ```
 
 <details>
@@ -161,10 +161,13 @@ curl --header "Authorization: Bearer LOGO_DEV_SECRET_KEY" "https://api.logo.dev/
 <br />
 
 ```json
-[
-  { "name": "Notion", "domain": "notion.com", "logo_url": "https://img.logo.dev/notion.com?token=…" },
-  { "name": "Notion Capital", "domain": "notioncapital.com", "logo_url": "https://img.logo.dev/notioncapital.com?token=…" }
-]
+{
+  "data": [
+    { "object": "search_result", "name": "Notion", "domain": "notion.com", "logo_url": "https://img.logo.dev/notion.com?token=…" },
+    { "object": "search_result", "name": "Notion Capital", "domain": "notioncapital.com", "logo_url": "https://img.logo.dev/notioncapital.com?token=…" }
+  ],
+  "metadata": { "request_id": "request_…" }
+}
 ```
 
 </details>
