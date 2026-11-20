@@ -1,0 +1,6 @@
+{
+  "identifier": "logo-dev",
+  "name": "Logo.dev",
+  "version": "1.0.0",
+  "description": "Look up any company's brand, logo, and brandmark by domain, ticker, ISIN, crypto symbol, or name. Adds the Logo.dev MCP server and the Logo.dev skill."
+}
