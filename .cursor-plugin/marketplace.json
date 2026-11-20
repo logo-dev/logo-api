@@ -1,0 +1,12 @@
+{
+  "name": "logo-dev",
+  "owner": { "name": "Logo.dev" },
+  "metadata": { "description": "Logo.dev plugins for AI coding agents." },
+  "plugins": [
+    {
+      "name": "logo-dev",
+      "source": "plugins/logo-dev",
+      "description": "Look up any company's brand, logo, and brandmark by domain, ticker, ISIN, crypto symbol, or name. Adds the Logo.dev MCP server and the Logo.dev skill."
+    }
+  ]
+}
