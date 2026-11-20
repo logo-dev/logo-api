@@ -215,16 +215,75 @@ Component sources live in `registry/new-york/`. An item that depends on another 
 
 ## AI agents
 
-Give Claude Code, Cursor, or another AI coding agent the Logo.dev MCP server and the Logo.dev skill with the `logo-dev` plugin in [`plugins/logo-dev`](plugins/logo-dev).
+The Logo.dev MCP server gives AI agents the Logo.dev API as tools. Your agent can look up a brand by domain, ticker, ISIN, crypto symbol, or name, get its logo or brandmark, search brands, and manage webhook subscriptions.
 
-In Claude Code:
+```text
+https://mcp.logo.dev/mcp
+```
+
+The server uses the streamable HTTP transport. The first time you connect, your client opens a browser window where you sign in to Logo.dev. You don't need an API key. Each tool runs as your team and spends API credits at the same rates as API requests.
+
+### Add the MCP server
+
+**Claude Code**
+
+```bash
+claude mcp add --scope user --transport http logo-dev https://mcp.logo.dev/mcp
+```
+
+Start Claude Code, run `/mcp`, select **logo-dev**, and select **Authenticate**.
+
+**Claude Desktop and web**
+
+In Claude, open **Customize**, then **Connectors**. Select **Add**, then **Add custom connector**. Enter the name `Logo.dev` and the URL `https://mcp.logo.dev/mcp`, and keep the suggested sign-in settings.
+
+**Cursor**
+
+Add the server to `~/.cursor/mcp.json`, or to `.cursor/mcp.json` in a project:
+
+```json
+{
+  "mcpServers": {
+    "logo-dev": {
+      "url": "https://mcp.logo.dev/mcp"
+    }
+  }
+}
+```
+
+Open **Cursor Settings**, then **Tools & MCPs**, and select **Connect** next to **logo-dev**.
+
+**VS Code**
+
+Run **MCP: Add Server** from the Command Palette, select **HTTP**, enter `https://mcp.logo.dev/mcp`, and use the server ID `logo-dev`. Use the tools in Copilot Chat in **Agent** mode.
+
+**Codex**
+
+```bash
+codex mcp add logo-dev --url https://mcp.logo.dev/mcp
+codex mcp login logo-dev
+```
+
+**Other clients**
+
+Any MCP client that supports streamable HTTP and OAuth sign-in can connect with the URL above. Step-by-step guides for each client are in the [MCP docs](https://www.logo.dev/docs/mcp/clients).
+
+### Install the plugin
+
+The `logo-dev` plugin in [`plugins/logo-dev`](plugins/logo-dev) adds the MCP server and the Logo.dev skill, which tells your agent how to use the Logo.dev CDN and API in your code. In Claude Code:
 
 ```
 /plugin marketplace add logo-dev/logo-api
 /plugin install logo-dev@logo-dev
 ```
 
-Then run `/mcp`, select **logo-dev**, and select **Authenticate**. You sign in to Logo.dev in your browser, and you don't need an API key. For other clients, see the [MCP docs](https://www.logo.dev/docs/mcp/introduction).
+Then run `/mcp`, select **logo-dev**, and select **Authenticate**.
+
+### Try it
+
+> Use Logo.dev to look up the brand for the ticker AAPL. Give me its name, its domain, and its brand colors in hex.
+
+See every tool in the [tools reference](https://www.logo.dev/docs/mcp/tools).
 
 ## Integrations
 
