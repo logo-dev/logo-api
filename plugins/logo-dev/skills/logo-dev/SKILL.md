@@ -1,7 +1,7 @@
 ---
 name: logo-dev
 description: Show company logos and fetch brand data with Logo.dev. The Logo.dev CDN returns logo images by domain, stock ticker, crypto symbol, ISIN, or brand name for websites and apps. The Logo.dev API returns JSON brand profiles, logo and brandmark files, and brand search results for servers. Use when an application needs to display a company logo, store a logo file, enrich records with brand data, or resolve a brand name to a domain.
-license: Proprietary. See https://logo.dev/terms for complete terms.
+license: MIT
 compatibility: HTTP. The Logo.dev CDN (img.logo.dev) works client-side. The Logo.dev API (api.logo.dev/v2) is server-side only.
 metadata:
   author: logo-dev
