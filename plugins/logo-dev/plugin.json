@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "logo-dev",
+  "version": "1.0.0",
+  "description": "Look up any company's brand, logo, and brandmark by domain, ticker, ISIN, crypto symbol, or name. Adds the Logo.dev MCP server and the Logo.dev skill.",
+  "author": { "name": "Logo.dev", "url": "https://www.logo.dev" },
+  "homepage": "https://www.logo.dev/docs/mcp/introduction",
+  "repository": "https://github.com/logo-dev/logo-api",
+  "license": "MIT",
+  "keywords": ["logo", "logos", "brand", "brand data", "mcp"]
+}

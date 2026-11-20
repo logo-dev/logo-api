@@ -213,6 +213,19 @@ Component sources live in `registry/new-york/`. An item that depends on another 
 
 </details>
 
+## AI agents
+
+Give Claude Code, Cursor, or another AI coding agent the Logo.dev MCP server and the Logo.dev skill with the `logo-dev` plugin in [`plugins/logo-dev`](plugins/logo-dev).
+
+In Claude Code:
+
+```
+/plugin marketplace add logo-dev/logo-api
+/plugin install logo-dev@logo-dev
+```
+
+Then run `/mcp`, select **logo-dev**, and select **Authenticate**. You sign in to Logo.dev in your browser, and you don't need an API key. For other clients, see the [MCP docs](https://www.logo.dev/docs/mcp/introduction).
+
 ## Integrations
 
 | Build with | Spreadsheets and slides |
